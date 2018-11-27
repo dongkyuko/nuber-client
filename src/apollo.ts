@@ -40,11 +40,12 @@ const client = new ApolloClient({
           }
         }
       },
-    // req 헤더에 있는 X-JWT 가져오기 
+    // req 헤더에 X-JWT 설정하기
+    // Operation 에서 Mutaion, Query를 채감
     request: async (operation: Operation) => {
         operation.setContext({
             headers: {
-                "X-JWT": localStorage.getItem("X-JWT") || ""
+                "X-JWT": localStorage.getItem("jwt") || ""
             }
         });
     },
